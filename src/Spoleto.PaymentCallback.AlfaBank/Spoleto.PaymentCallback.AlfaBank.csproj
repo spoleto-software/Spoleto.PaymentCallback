@@ -30,7 +30,7 @@ The base project for callback service for Fast Payment System based on the AlfaB
       <Company>SPOLETO Software Development</Company>
       <PackageIcon>MainIcon.jpg</PackageIcon>
       <PackageProjectUrl>https://spoleto.ru</PackageProjectUrl>
-      <RepositoryUrl>https://github.com/spoleto-software/Spoleto.PaymentCallback.AlfaBank</RepositoryUrl>
+      <RepositoryUrl>https://github.com/spoleto-software/Spoleto.PaymentCallback</RepositoryUrl>
       <RepositoryType>git</RepositoryType>
       <PackageLicenseExpression>MIT</PackageLicenseExpression>
       <PackageTags>AlfaBank; Fast Payment System; Система быстрых платежей</PackageTags>
