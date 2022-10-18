@@ -39,14 +39,14 @@ The base project for callback service for Fast Payment System based on the AlfaB
       <Version>$([System.DateTime]::Now.AddYears(-2021).Year.ToString()).$([System.DateTime]::Now.ToString("MM.dd.HHmm"))</Version>
       <AssemblyVersion>$([System.DateTime]::Now.AddYears(-2021).Year.ToString()).$([System.DateTime]::Now.ToString("MM.dd.HHmm"))</AssemblyVersion>
       <FileVersion>$([System.DateTime]::Now.AddYears(-2021).Year.ToString()).$([System.DateTime]::Now.ToString("MM.dd.HHmm"))</FileVersion>
-      <!--<PackageReadmeFile>README.md</PackageReadmeFile>-->
+      <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
-      <!-- <None Include="..\..\README.md">
+       <None Include="..\..\README.md">
           <Pack>True</Pack>
           <PackagePath>\</PackagePath>
-      </None> -->
+      </None> 
       <None Include="Resources\MainIcon.jpg">
           <Pack>True</Pack>
           <PackagePath></PackagePath>
