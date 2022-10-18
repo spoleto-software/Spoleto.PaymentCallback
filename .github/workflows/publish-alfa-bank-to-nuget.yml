@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'src/Publish Spoleto.PaymentCallback.AlfaBank/**'
+      - 'src/Spoleto.PaymentCallback.AlfaBank/**'
       - 'LICENSE'
       - 'README.md'
   pull_request:
@@ -25,16 +25,16 @@ jobs:
         dotnet-version: 6.0.x
 
     - name: Restore dependencies
-      run: dotnet restore src/Publish Spoleto.PaymentCallback.AlfaBank/Publish Spoleto.PaymentCallback.AlfaBank.csproj
+      run: dotnet restore src/Spoleto.PaymentCallback.AlfaBank/Spoleto.PaymentCallback.AlfaBank.csproj
 
     - name: Build
-      run: dotnet build src/Publish Spoleto.PaymentCallback.AlfaBank/Publish Spoleto.PaymentCallback.AlfaBank.csproj --configuration Release --no-restore
+      run: dotnet build src/Spoleto.PaymentCallback.AlfaBank/Spoleto.PaymentCallback.AlfaBank.csproj --configuration Release --no-restore
 
     - name: Publish to Nuget
       uses: alirezanet/publish-nuget@v3.0.4
       with:
           # Filepath of the project to be packaged, relative to root of repository
-          PROJECT_FILE_PATH: src/Publish Spoleto.PaymentCallback.AlfaBank/Publish Spoleto.PaymentCallback.AlfaBank.csproj
+          PROJECT_FILE_PATH: src/Spoleto.PaymentCallback.AlfaBank/Spoleto.PaymentCallback.AlfaBank.csproj
           # API key to authenticate with NuGet server
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
           # Flag to toggle pushing symbols along with nuget package to the server, disabled by default

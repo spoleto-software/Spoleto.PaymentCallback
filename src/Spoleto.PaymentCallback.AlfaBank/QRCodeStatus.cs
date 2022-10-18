@@ -1,7 +1,7 @@
 ﻿namespace Spoleto.PaymentCallback.AlfaBank
 {
     /// <summary>
-    /// Статусы оплаты QR-кода в НСПК
+    /// Статусы оплаты QR-кода в НСПК.
     /// </summary>
     public enum QRCodeStatus
     {
