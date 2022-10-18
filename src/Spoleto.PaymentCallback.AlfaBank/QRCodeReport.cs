@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 namespace Spoleto.PaymentCallback.AlfaBank
 {
     /// <summary>
-    /// Уведомлением от НСПК по адресу из параметра “notificationUrl”.
+    /// Уведомление от НСПК по адресу из параметра “notificationUrl”.
     /// </summary>
     public class QRCodeReport
     {
