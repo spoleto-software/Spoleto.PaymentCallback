@@ -43,10 +43,10 @@ The base project for callback service for Fast Payment System based on the AlfaB
   </PropertyGroup>
 
   <ItemGroup>
-       <None Include="..\..\README.md">
+      <None Update="README.md">
           <Pack>True</Pack>
           <PackagePath>\</PackagePath>
-      </None> 
+      </None>
       <None Include="Resources\MainIcon.jpg">
           <Pack>True</Pack>
           <PackagePath></PackagePath>

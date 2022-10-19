@@ -19,6 +19,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkFlow", "WorkFlow", "{9D75D98A-FF63-45B8-8A15-3D822DB75C44}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\publish-alfa-bank-to-nuget.yml = .github\workflows\publish-alfa-bank-to-nuget.yml
+		.github\workflows\publish-atol-online-to-nuget.yml = .github\workflows\publish-atol-online-to-nuget.yml
 	EndProjectSection
 EndProject
 Global

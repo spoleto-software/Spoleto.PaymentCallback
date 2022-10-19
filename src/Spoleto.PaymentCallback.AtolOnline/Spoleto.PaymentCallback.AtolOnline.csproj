@@ -2,6 +2,59 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+      <AssemblyName>Spoleto.PaymentCallback.AtolOnline</AssemblyName>
+      <RootNamespace>Spoleto.PaymentCallback.AtolOnline</RootNamespace>
+      <Title>Spoleto.PaymentCallback.AtolOnline</Title>
+      <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+      <DocumentationFile>bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
+      <GenerateDocumentationFile>True</GenerateDocumentationFile>
+      <LangVersion>preview</LangVersion>
   </PropertyGroup>
+
+  <!-- Include symbols for debugging -->
+  <PropertyGroup>
+      <!-- This command creates external file (snupkg) with .pdb next to nuget file (nupkg) -->
+      <IncludeSymbols>true</IncludeSymbols>
+      <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+      <GenerateDocumentationFile>True</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!-- Package info -->
+  <PropertyGroup>
+      <Product>Spoleto.PaymentCallback.AtolOnline library</Product>
+      <Description>C# SDK для обработки уведомлений от АТОЛ Онлайн.
+          The base project for callback service for Atol Online.
+      </Description>
+      <PackageId>Spoleto.PaymentCallback.AtolOnline</PackageId>
+      <Authors>OlegNadymov;Spoleto-Software</Authors>
+      <Company>SPOLETO Software Development</Company>
+      <PackageIcon>MainIcon.jpg</PackageIcon>
+      <PackageProjectUrl>https://spoleto.ru</PackageProjectUrl>
+      <RepositoryUrl>https://github.com/spoleto-software/Spoleto.PaymentCallback</RepositoryUrl>
+      <RepositoryType>git</RepositoryType>
+      <PackageLicenseExpression>MIT</PackageLicenseExpression>
+      <PackageTags>АТОЛ-Онлайн; АТОЛ; Atol; AtolOnline; Atol-Online</PackageTags>
+      <Copyright>Copyright © $([System.DateTime]::Now.Year.ToString())</Copyright>
+      <PackageReleaseNotes></PackageReleaseNotes>
+      <Version>$([System.DateTime]::Now.AddYears(-2021).Year.ToString()).$([System.DateTime]::Now.ToString("MM.dd.HHmm"))</Version>
+      <AssemblyVersion>$([System.DateTime]::Now.AddYears(-2021).Year.ToString()).$([System.DateTime]::Now.ToString("MM.dd.HHmm"))</AssemblyVersion>
+      <FileVersion>$([System.DateTime]::Now.AddYears(-2021).Year.ToString()).$([System.DateTime]::Now.ToString("MM.dd.HHmm"))</FileVersion>
+      <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+      <None Update="README.md">
+          <Pack>True</Pack>
+          <PackagePath>\</PackagePath>
+      </None>      
+      <None Include="Resources\MainIcon.jpg">
+          <Pack>True</Pack>
+          <PackagePath></PackagePath>
+      </None>
+  </ItemGroup>
+
+  <ItemGroup>
+      <PackageReference Include="Spoleto.MQ.Interfaces" Version="1.10.18.1210" />
+  </ItemGroup>
 
 </Project>
