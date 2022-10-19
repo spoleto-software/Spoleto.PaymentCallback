@@ -45,7 +45,10 @@ try
     builder.Logging.ClearProviders();
     builder.Host.UseNLog();
 
-    builder.Services.AddControllers();
+    builder.Services.AddControllers().AddJsonOptions(opt =>
+    {
+        opt.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+    });
 
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
