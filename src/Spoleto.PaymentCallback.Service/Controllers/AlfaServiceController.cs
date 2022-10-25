@@ -42,8 +42,8 @@ namespace Spoleto.PaymentCallback.Service.Controllers
         {
             _logger.LogInformation($"{nameof(CreateQRCodeReport)}, QrcId = <{report.QrcId}>.");
 
-            var json = JsonHelper.ToJson(report);
-            _logger.LogInformation(json);
+            //var json = JsonHelper.ToJson(report);
+            //_logger.LogInformation(json);
 
             var uniqueMessage = new AlfaBankQRCodeReport
             {
