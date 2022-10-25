@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Spoleto.PaymentCallback.AtolOnline.Models;
 using Spoleto.PaymentCallback.Service.Models.AtolOnline;
@@ -9,6 +10,7 @@ namespace Spoleto.PaymentCallback.Service.Controllers
     /// <summary>
     /// Callback for AtolOnline notifications.
     /// </summary>
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class AtolServiceController : ControllerBase
@@ -19,8 +21,17 @@ namespace Spoleto.PaymentCallback.Service.Controllers
         public AtolServiceController(ILogger<AtolServiceController> logger, AtolOnlineFiscalRequestService fiscalRequestService)
         {
             _logger = logger;
+            _fiscalRequestService = fiscalRequestService;
         }
 
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult Index()
+        {
+            return Ok("Ok!");
+        }
+
+        [AllowAnonymous]
         [HttpPost]
         [Consumes(DefaultSettings.ContentType)]
         public async Task<FiscalRequest> CreateFiscalRequest(ReportModel reportModel)
