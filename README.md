@@ -27,3 +27,13 @@ Web API сервис для получения уведомлений. Рабо�
 Web API callback service for Alfa-Bank Fast payment system and Atol Online.
 
 https://github.com/spoleto-software/Spoleto.PaymentCallback/tree/main/src/Spoleto.PaymentCallback.Service
+
+## Клиент для интеграции с хостом Альфа-Банка для оплаты покупок через СБП
+
+C# SDK для интеграции с хостом Альфа-Банка для оплаты покупок через СБП.
+
+The project for integration with Alfa-Bank Fast Payment System.
+
+Отдельный репозиторий:
+
+https://github.com/spoleto-software/Spoleto.FastPayments.AlfaBank

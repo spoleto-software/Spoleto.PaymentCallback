@@ -11,3 +11,13 @@ C# SDK для обработки уведомлений от НСПК на ос�
 The base project for callback service for Fast Payment System based on the AlfaBank host.
 
 https://github.com/spoleto-software/Spoleto.PaymentCallback/tree/main/src/Spoleto.PaymentCallback.AlfaBank
+
+## Клиент для интеграции с хостом Альфа-Банка для оплаты покупок через СБП
+
+C# SDK для интеграции с хостом Альфа-Банка для оплаты покупок через СБП.
+
+The project for integration with Alfa-Bank Fast Payment System.
+
+Отдельный репозиторий:
+
+https://github.com/spoleto-software/Spoleto.FastPayments.AlfaBank
