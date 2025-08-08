@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Spoleto.PaymentCallback.AlfaBank\Spoleto.PaymentCallback.AlfaBank.csproj" />
     <ProjectReference Include="..\Spoleto.PaymentCallback.AtolOnline\Spoleto.PaymentCallback.AtolOnline.csproj" />
+    <ProjectReference Include="..\Spoleto.PaymentCallback.CloudKassir\Spoleto.PaymentCallback.CloudKassir.csproj" />
   </ItemGroup>
 
 </Project>

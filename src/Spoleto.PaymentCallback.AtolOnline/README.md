@@ -1,6 +1,6 @@
 # Spoleto.PaymentCallback
 
-The callback service for Alfa-Bank Fast payment system and Atol Online.
+The callback service for Alfa-Bank Fast payment system, Atol Online, CloudKassir.
 
 https://github.com/spoleto-software/Spoleto.PaymentCallback
 

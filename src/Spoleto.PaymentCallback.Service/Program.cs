@@ -5,7 +5,9 @@ using NLog.Web;
 using Spoleto.MQ.Interfaces;
 using Spoleto.MQ.Options;
 using Spoleto.MQ.Publisher;
+using Spoleto.PaymentCallback.Service;
 using Spoleto.PaymentCallback.Service.Models.AtolOnline;
+using Spoleto.PaymentCallback.Service.Models.CloudKassir;
 using Spoleto.PaymentCallback.Service.Services;
 
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
@@ -30,12 +32,17 @@ try
     //Atol online:
     builder.Services.Configure<AtolOnlineServiceDatabaseSettings>(
         builder.Configuration.GetSection(nameof(AtolOnlineServiceDatabaseSettings)));
-
-    builder.Services.AddSingleton<IAtolOnlineServiceDatabaseSettings>(sp =>
-        sp.GetRequiredService<IOptions<AtolOnlineServiceDatabaseSettings>>().Value);
-
+    
     builder.Services.AddSingleton<AtolOnlineFiscalRequestService>();
 
+    //CloudKassir online:
+
+    builder.Services.Configure<CKSettings>(builder.Configuration.GetSection(nameof(CKSettings)));
+
+    builder.Services.Configure<CKServiceDatabaseSettings>(
+        builder.Configuration.GetSection(nameof(CKServiceDatabaseSettings)));
+
+    builder.Services.AddSingleton<CKFiscalRequestService>();
     //MQ Rabbit:
     builder.Services.Configure<MqOption>(builder.Configuration.GetSection(nameof(MqOption)));
     builder.Services.AddSingleton<IMqOption>(sp => sp.GetRequiredService<IOptions<MqOption>>().Value);
@@ -71,6 +78,8 @@ try
     {
         app.UseSwagger();
         app.UseSwaggerUI();
+
+        LogDevelopmentWarnings(app.Services, app.Logger);
     }
 
     app.UseAuthentication();
@@ -90,4 +99,26 @@ finally
 {
     // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
     NLog.LogManager.Shutdown();
+}
+
+void LogDevelopmentWarnings(IServiceProvider services, Microsoft.Extensions.Logging.ILogger logger)
+{
+    try
+    {
+        var ckSettings = services.GetService<IOptions<CKSettings>>()?.Value;
+
+        if (ckSettings != null && !ckSettings.EnableHmacValidation)
+        {
+            logger.LogWarning("HMAC validation is disabled for CloudKassir (Development mode)");
+        }
+
+        if (ckSettings != null && !ckSettings.EnableMessageQueue)
+        {
+            logger.LogInformation("Message queue is disabled for CloudKassir");
+        }
+    }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "Error logging development warnings");
+    }
 }

@@ -364,3 +364,5 @@ FodyWeavers.xsd
 
 # Any sensitive settings
 appsettings.Development.json
+.editorconfig
+.config/

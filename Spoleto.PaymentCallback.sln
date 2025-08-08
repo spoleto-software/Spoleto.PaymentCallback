@@ -20,7 +20,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkFlow", "WorkFlow", "{9D
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\publish-alfa-bank-to-nuget.yml = .github\workflows\publish-alfa-bank-to-nuget.yml
 		.github\workflows\publish-atol-online-to-nuget.yml = .github\workflows\publish-atol-online-to-nuget.yml
+		.github\workflows\publish-cloudkassir-to-nuget.yml = .github\workflows\publish-cloudkassir-to-nuget.yml
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spoleto.PaymentCallback.CloudKassir", "src\Spoleto.PaymentCallback.CloudKassir\Spoleto.PaymentCallback.CloudKassir.csproj", "{C386A117-4D2F-48AE-A9A6-FD343BC86A02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +43,10 @@ Global
 		{2AD55D67-2E0A-48A6-B77B-5AA19E3E23A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AD55D67-2E0A-48A6-B77B-5AA19E3E23A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AD55D67-2E0A-48A6-B77B-5AA19E3E23A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C386A117-4D2F-48AE-A9A6-FD343BC86A02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C386A117-4D2F-48AE-A9A6-FD343BC86A02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C386A117-4D2F-48AE-A9A6-FD343BC86A02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C386A117-4D2F-48AE-A9A6-FD343BC86A02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

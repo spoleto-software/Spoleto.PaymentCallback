@@ -1,6 +1,6 @@
 # Spoleto.PaymentCallback
 
-The callback service for Alfa-Bank Fast payment system and Atol Online.
+The callback service for Alfa-Bank Fast payment system, Atol Online, CloudKassir.
 
 https://github.com/spoleto-software/Spoleto.PaymentCallback
 
@@ -20,13 +20,22 @@ The base project for callback service for Atol Online.
 
 https://github.com/spoleto-software/Spoleto.PaymentCallback/tree/main/src/Spoleto.PaymentCallback.AtolOnline
 
+## Spoleto.PaymentCallback.CloudKassir
+
+C# SDK для обработки уведомлений от CloudKassir
+
+The base project for callback service for CloudKassir
+
+https://github.com/spoleto-software/Spoleto.PaymentCallback/tree/main/src/Spoleto.PaymentCallback.CloudKassir
+
 ## Spoleto.PaymentCallback.Service
 
 Web API сервис для получения уведомлений. Работает на NET 6.
 
-Web API callback service for Alfa-Bank Fast payment system and Atol Online.
+Web API callback service for Alfa-Bank Fast payment system and Atol Online, CloudKassir.
 
 https://github.com/spoleto-software/Spoleto.PaymentCallback/tree/main/src/Spoleto.PaymentCallback.Service
+
 
 ## Клиент для интеграции с хостом Альфа-Банка для оплаты покупок через СБП
 

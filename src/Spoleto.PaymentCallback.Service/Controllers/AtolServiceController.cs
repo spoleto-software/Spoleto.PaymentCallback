@@ -10,83 +10,65 @@ namespace Spoleto.PaymentCallback.Service.Controllers
     /// <summary>
     /// Callback for AtolOnline notifications.
     /// </summary>
-    [Authorize]
-    [ApiController]
     [Route("[controller]")]
-    public class AtolServiceController : ControllerBase
+    public class AtolServiceController : BaseFiscalCallbackController<AtolFiscalRequest, ReportModel>
     {
-        private readonly ILogger<AtolServiceController> _logger;
-        private readonly AtolOnlineFiscalRequestService _fiscalRequestService;
-
-        public AtolServiceController(ILogger<AtolServiceController> logger, AtolOnlineFiscalRequestService fiscalRequestService)
+        public AtolServiceController(
+            ILogger<AtolServiceController> logger,
+            AtolOnlineFiscalRequestService fiscalRequestService)
+            : base(logger, fiscalRequestService)
         {
-            _logger = logger;
-            _fiscalRequestService = fiscalRequestService;
-        }
-
-        [AllowAnonymous]
-        [HttpGet]
-        public ActionResult Index()
-        {
-            return Ok("Ok!");
         }
 
         [AllowAnonymous]
         [HttpPost]
         [Consumes(DefaultSettings.ContentType)]
-        public async Task<FiscalRequest> CreateFiscalRequest(ReportModel reportModel)
+        public async Task<IActionResult> CreateFiscalRequest([FromBody] ReportModel reportModel)
         {
-            _logger.LogInformation($"CreateFiscalRequest, external_id = <{reportModel.ExternalId}>.");
-            var fiscalRequest = new FiscalRequest
+            _logger.LogInformation("AtolOnline callback received");
+
+            return await ProcessFiscalRequest(reportModel);
+        }
+
+        protected override async Task<AtolFiscalRequest> CreateFiscalRequestFromModel(ReportModel reportModel)
+        {
+            if (!Guid.TryParse(reportModel.ExternalId, out var saleSlipId))
             {
-                SaleSlipId = Guid.Parse(reportModel.ExternalId),
+                throw new ArgumentException($"Invalid ExternalId format: {reportModel.ExternalId}");
+            }
+
+            return new AtolFiscalRequest
+            {
+                SaleSlipId = saleSlipId,
                 Uuid = reportModel.Uuid,
                 Timestamp = DateTime.UtcNow,
                 OriginalReportModel = reportModel
             };
-
-            await _fiscalRequestService.CreateAsync(fiscalRequest);
-
-            return fiscalRequest;
         }
 
-        [HttpGet("{uuid:length(36)}")]
-        [Produces(DefaultSettings.ContentType)]
-        public async Task<ActionResult<ReportModel>> GetFiscalRequest(string uuid)
+        protected override ReportModel ExtractReportModelFromRequest(AtolFiscalRequest request)
         {
-            var obj = await _fiscalRequestService.GetAsync(uuid);
-            if (obj == null)
-            {
-                return StatusCode((int)HttpStatusCode.NotFound, $"The fiscal request with the uuid = <{uuid}> not found.");
-            }
-
-            return obj.OriginalReportModel;
+            return request.OriginalReportModel;
         }
 
-        [HttpGet("BySaleSlipId/{saleSlipId:guid}")]
-        [Produces(DefaultSettings.ContentType)]
-        public async Task<ActionResult<ReportModel>> GetFiscalRequestBySaleSlipId(Guid saleSlipId)
+        protected override async Task<bool> ValidateRequestAsync(ReportModel reportModel)
         {
-            var obj = await _fiscalRequestService.GetAsyncBySaleSlipId(saleSlipId);
-            if (obj == null)
-            {
-                return StatusCode((int)HttpStatusCode.NotFound, $"The fiscal request with the sale slip Id = <{saleSlipId}> not found.");
-            }
-
-            return obj.OriginalReportModel;
+            return await Task.FromResult(true);
         }
 
-        [HttpGet("ByFiscalCheckNumber/{number:int}")]
-        [Produces(DefaultSettings.ContentType)]
-        public async Task<ActionResult<ReportModel>> GetFiscalRequestByFiscalCheckNumber(int number)
+        protected override async Task PostProcessRequestAsync(AtolFiscalRequest request)
         {
-            var obj = await _fiscalRequestService.GetAsyncByFiscalCheckNumber(number);
-            if (obj == null)
-            {
-                return StatusCode((int)HttpStatusCode.NotFound, $"The fiscal request with the fiscal check number = <{number}> not found.");
-            }
+            await Task.CompletedTask;
+        }
 
-            return obj.OriginalReportModel;
+        protected override string GetExternalId(ReportModel reportModel)
+        {
+            return reportModel.ExternalId;
+        }
+
+        protected override string GetId(ReportModel reportModel)
+        {
+            return reportModel.Uuid;
         }
     }
 }
