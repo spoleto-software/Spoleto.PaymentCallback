@@ -13,14 +13,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		LICENSE = LICENSE
+		publish-assets-to-github.sh = publish-assets-to-github.sh
 		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkFlow", "WorkFlow", "{9D75D98A-FF63-45B8-8A15-3D822DB75C44}"
 	ProjectSection(SolutionItems) = preProject
-		.github\workflows\publish-alfa-bank-to-nuget.yml = .github\workflows\publish-alfa-bank-to-nuget.yml
-		.github\workflows\publish-atol-online-to-nuget.yml = .github\workflows\publish-atol-online-to-nuget.yml
-		.github\workflows\publish-cloudkassir-to-nuget.yml = .github\workflows\publish-cloudkassir-to-nuget.yml
+		.github\workflows\cd.yml = .github\workflows\cd.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spoleto.PaymentCallback.CloudKassir", "src\Spoleto.PaymentCallback.CloudKassir\Spoleto.PaymentCallback.CloudKassir.csproj", "{C386A117-4D2F-48AE-A9A6-FD343BC86A02}"
