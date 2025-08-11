@@ -19,7 +19,15 @@
             C# SDK для обработки уведомлений от НСПК на основе API Альфа-Банка.
             The base project for callback service for Fast Payment System based on the AlfaBank host.
         </Description>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
+
+    <ItemGroup>
+        <None Update="README.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+    </ItemGroup>
 
   <ItemGroup>
       <PackageReference Include="Spoleto.MQ.Interfaces" Version="1.10.18.1210" />

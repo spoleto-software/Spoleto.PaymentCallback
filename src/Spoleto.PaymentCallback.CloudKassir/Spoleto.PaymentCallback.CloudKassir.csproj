@@ -18,7 +18,15 @@
             C# SDK для обработки уведомлений от CloudKassir.
             The base project for callback service for CloudKassir.
         </Description>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
+
+    <ItemGroup>
+        <None Update="README.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Spoleto.MQ.Interfaces" Version="1.10.18.1210" />
