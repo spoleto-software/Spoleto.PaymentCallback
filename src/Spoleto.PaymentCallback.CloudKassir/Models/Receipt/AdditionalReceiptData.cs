@@ -34,10 +34,10 @@ namespace Spoleto.PaymentCallback.CloudKassir.Models
         public string CashierName { get; set; }
 
         /// <summary>
-        /// Дата/время чека
+        /// Дата/время чека в виде строки
         /// </summary>
         [JsonPropertyName("DateTime")]
-        public DateTime DateTime { get; set; }
+        public string DateTime { get; set; }
 
         /// <summary>
         /// Заводской номер кассы
