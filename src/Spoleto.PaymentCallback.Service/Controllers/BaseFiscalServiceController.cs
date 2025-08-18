@@ -26,10 +26,10 @@ namespace Spoleto.PaymentCallback.Service.Controllers
             _logger = logger;
             _fiscalRequestService = fiscalRequestService;
         }
-       
+
         [AllowAnonymous]
         [HttpGet]
-        public virtual ActionResult Index() => Ok("Ok!"); 
+        public virtual ActionResult Index() => Ok("Ok!");
 
         protected abstract Task<TRequest> CreateFiscalRequestFromModel(TReportModel reportModel);
         protected abstract TReportModel ExtractReportModelFromRequest(TRequest request);
@@ -64,7 +64,7 @@ namespace Spoleto.PaymentCallback.Service.Controllers
             }
         }
 
-        [HttpGet("{uuid:length(36)}")]
+        [HttpGet("{uuid}")]
         [Produces(DefaultSettings.ContentType)]
         public async Task<ActionResult<TReportModel>> GetFiscalRequest(string uuid)
         {
@@ -147,7 +147,7 @@ namespace Spoleto.PaymentCallback.Service.Controllers
                 _logger.LogInformation("Content-Length: {ContentLength}", Request.ContentLength);
                 _logger.LogInformation("Raw Body: {RawBody}", rawBody);
 
-               
+
 
                 _logger.LogInformation("=== JSON ANALYSIS END ===");
 
