@@ -127,38 +127,5 @@ namespace Spoleto.PaymentCallback.Service.Controllers
             }
         }
 
-        [AllowAnonymous]
-        [HttpPost("analyze-json")]
-        public async Task<IActionResult> AnalyzeJson()
-        {
-            try
-            {
-                // Читаем сырое тело запроса
-                Request.EnableBuffering();
-                Request.Body.Position = 0;
-
-                using var reader = new StreamReader(Request.Body, leaveOpen: true);
-                var rawBody = await reader.ReadToEndAsync();
-
-                Request.Body.Position = 0;
-
-                _logger.LogInformation("=== JSON ANALYSIS START ===");
-                _logger.LogInformation("Content-Type: {ContentType}", Request.ContentType);
-                _logger.LogInformation("Content-Length: {ContentLength}", Request.ContentLength);
-                _logger.LogInformation("Raw Body: {RawBody}", rawBody);
-
-
-
-                _logger.LogInformation("=== JSON ANALYSIS END ===");
-
-                return Ok(new { code = 0 });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error analyzing JSON");
-                return StatusCode(500, new { error = ex.Message, stackTrace = ex.StackTrace });
-            }
-        }
-
     }
 }
