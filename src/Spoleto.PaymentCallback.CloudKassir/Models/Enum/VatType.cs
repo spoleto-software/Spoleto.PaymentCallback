@@ -43,6 +43,11 @@ namespace Spoleto.PaymentCallback.CloudKassir.Models
         Vat20 = 20,
 
         /// <summary>
+        /// НДС 22%
+        /// </summary>
+        Vat22 = 22,
+
+        /// <summary>
         /// Расчетный НДС 5/105
         /// </summary>
         Vat105 = 105,
@@ -60,6 +65,11 @@ namespace Spoleto.PaymentCallback.CloudKassir.Models
         /// <summary>
         /// Расчетный НДС 20/120
         /// </summary>
-        Vat120 = 120
+        Vat120 = 120,
+
+        /// <summary>
+        /// Расчетный НДС 22/122
+        /// </summary>
+        Vat122 = 122
     }
 }
