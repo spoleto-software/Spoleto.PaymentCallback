@@ -26,10 +26,10 @@ namespace Spoleto.PaymentCallback.Service.Controllers
             _logger = logger;
             _fiscalRequestService = fiscalRequestService;
         }
-       
+
         [AllowAnonymous]
         [HttpGet]
-        public virtual ActionResult Index() => Ok("Ok!"); 
+        public virtual ActionResult Index() => Ok("Ok!");
 
         protected abstract Task<TRequest> CreateFiscalRequestFromModel(TReportModel reportModel);
         protected abstract TReportModel ExtractReportModelFromRequest(TRequest request);
@@ -64,7 +64,7 @@ namespace Spoleto.PaymentCallback.Service.Controllers
             }
         }
 
-        [HttpGet("{uuid:length(36)}")]
+        [HttpGet("{uuid}")]
         [Produces(DefaultSettings.ContentType)]
         public async Task<ActionResult<TReportModel>> GetFiscalRequest(string uuid)
         {
@@ -124,39 +124,6 @@ namespace Spoleto.PaymentCallback.Service.Controllers
             {
                 _logger.LogError(ex, "Error getting fiscal request by fiscal check number: {Number}", number);
                 return StatusCode(500, "Internal server error");
-            }
-        }
-
-        [AllowAnonymous]
-        [HttpPost("analyze-json")]
-        public async Task<IActionResult> AnalyzeJson()
-        {
-            try
-            {
-                // Читаем сырое тело запроса
-                Request.EnableBuffering();
-                Request.Body.Position = 0;
-
-                using var reader = new StreamReader(Request.Body, leaveOpen: true);
-                var rawBody = await reader.ReadToEndAsync();
-
-                Request.Body.Position = 0;
-
-                _logger.LogInformation("=== JSON ANALYSIS START ===");
-                _logger.LogInformation("Content-Type: {ContentType}", Request.ContentType);
-                _logger.LogInformation("Content-Length: {ContentLength}", Request.ContentLength);
-                _logger.LogInformation("Raw Body: {RawBody}", rawBody);
-
-               
-
-                _logger.LogInformation("=== JSON ANALYSIS END ===");
-
-                return Ok(new { code = 0 });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error analyzing JSON");
-                return StatusCode(500, new { error = ex.Message, stackTrace = ex.StackTrace });
             }
         }
 
